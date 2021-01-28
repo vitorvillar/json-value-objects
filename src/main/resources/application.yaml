@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  flyway:
+    enabled: true
+    user: postgres
+    password: postgres
+  #    table: schema_version # for old version
+
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/json_value_objects"
+    username: "postgres"
+    password: "postgres"
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      max-lifetime: 600000 # 10 minutes
+      idle-timeout: 300000 # current 5m
+      leak-detection-threshold: 10000 # 10s
+      maximum-pool-size: 60
+      minimum-idle: 10
+  jpa:
+    properties:
+      #      uncomment for JPA script creation
+      javax:
+        persistence:
+          schema-generation:
+            create-source: metadata
+            scripts:
+              action: create
+              create-target: V1__create_tables.sql
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          format_sql: true
+          jdbc:
+            time_zone: UTC
+      #        ddl-auto: update
+      show-sql: false

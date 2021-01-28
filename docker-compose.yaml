@@ -1,0 +1,24 @@
+version: '2.1'
+services:
+  postgres:
+    image: "postgres:12.5"
+    volumes:
+      - ./dump:/docker-entrypoint-initdb.d/:ro
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=json_value_objects
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgres']
+      interval: 10s
+      retries: 3
+      timeout: 1s
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    restart: always
+
+networks:
+  backend:
+    driver: bridge
