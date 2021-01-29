@@ -39,4 +39,9 @@ public class SimpleScenarioController {
     public ResponseEntity<?> getAllCustomers() {
         return ResponseEntity.ok(simpleCustomerFinderService.getAllCustomers());
     }
+
+    @GetMapping("/customer/street/{street}")
+    public ResponseEntity<?> getAllCustomers(@PathVariable String street) {
+        return ResponseEntity.ok(simpleCustomerFinderService.getByStreet(street));
+    }
 }

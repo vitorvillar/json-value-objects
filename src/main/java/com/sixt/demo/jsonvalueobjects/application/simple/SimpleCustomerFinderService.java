@@ -24,4 +24,8 @@ public class SimpleCustomerFinderService {
     public List<SimpleCustomer> getAllCustomers() {
         return simpleCustomerRepository.findAll();
     }
+
+    public List<SimpleCustomer> getByStreet(String street) {
+        return simpleCustomerRepository.findAllCustomersByStreet(street);
+    }
 }

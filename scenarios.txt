@@ -21,9 +21,16 @@ domain/nested - OK
 
 - Complex - OK
     - Object Values - OK
-    - Nested with Collections
-    - Queryable field inside JSON
-    - Query an InsideValueObject that's in a collection of the OuterValueObject
+    - Nested with Collections - OK
+    - Queryable field inside JSON - OK
+        - It needs to be a native query, as it uses "->>" Postgres operator
+        - You can use LIKE operator with Named Parameters
+            @Query(value = "select * from simple_customer where billing_address ->> 'street' ilike %:street%", nativeQuery = true)
+            public List<SimpleCustomer> findAllCustomersByStreet(@Param("street") String street);
+    - Query an InsideValueObject that's in a collection of the OuterValueObject - OK
+        - If this is really important, maybe the field should not be a jsonb :)
+        - It's possible to filter values out using Postgres json operators + functions, but it can become messy easily:
+            select json_array_elements(to_json(charge_package -> 'charges')) ->> 'chargeCode' from reservation;
 
 // TECHNICAL QUESTIONS
 - How do I prevent accidental changes in my value objects that break persistence?
@@ -40,7 +47,7 @@ domain/nested - OK
             - com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `com.sixt.demo.jsonvalueobjects.domain.collection.AddressType` from String "HOME_ADDRESS": not one of the values accepted for Enum class: [BILLING, DELIVERY]
                at [Source: (String)"[{"city": "Turbolandia", "type": "HOME_ADDRESS", "state": "Sao Turbo", "street": "Rua do Turbo", "country": "HUE HUE BR", "postCode": 80000, "houseNumber": 1}, {"city": "Turbolandia", "type": "DELIVERY", "state": "Sao Turbo", "street": "Rua do Turbo", "country": "HUE HUE BR", "postCode": 80000, "houseNumber": 1}]"; line: 1, column: 34] (through reference chain: java.util.HashSet[0]->com.sixt.demo.jsonvalueobjects.domain.collection.Address["type"])
         - If something like this is needed, a migration plan has to be done.
-    - Old ValueObject in case of nested objects
+    - Old ValueObject in case of nested objects - OK
         - New object with same property name
             - In this case the old JSON value will be unmarshalled normally, as the JSON keys correspond with the new Java object
             - The Java domain object will have the new ValueObject loaded from the old JSON
