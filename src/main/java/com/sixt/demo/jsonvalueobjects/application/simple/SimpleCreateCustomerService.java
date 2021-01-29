@@ -21,28 +21,32 @@ public class SimpleCreateCustomerService {
 
     public SimpleCustomer createCustomer() {
         var billingAddress = new Address(
-                "Rua do Turbo",
-                1,
-                80000,
-                "Turbolandia",
-                "Sao Turbo",
-                "HUE HUE BR"
-        );
-        var deliveryAddress = new Address(
-                "Rua do Turbo",
+            "Zugspitzstr.",
             1,
             80000,
-            "Turbolandia",
-            "Sao Turbo",
-            "HUE HUE BR"
+            "Pullach Im Isartal",
+            "Bayern",
+            "Deutschland",
+            null,
+            1
+        );
+        var deliveryAddress = new Address(
+            "Zugspitzstr.",
+            1,
+            80000,
+            "Pullach Im Isartal",
+            "Bayern",
+            "Deutschland",
+            null,
+            1
         );
 
         var customer = new SimpleCustomer(
-                UUID.randomUUID(),
-                "Gudanzinho",
-                "gudan@empresasturbo.com.br",
-                billingAddress,
-                deliveryAddress
+            UUID.randomUUID(),
+            "Testkunde",
+            "testkunde@test.com",
+            billingAddress,
+            deliveryAddress
         );
 
         return simpleCustomerRepository.saveAndFlush(customer);

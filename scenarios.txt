@@ -1,26 +1,26 @@
 
 // SCENARIO EXAMPLE
 
-domain/simple
+domain/simple - OK
 - Customer has an address
 
-domain/collection
+domain/collection - OK
 - Customer has many addresses
     - Each address has a type (ENUM)
 
-domain/nested
+domain/nested - OK
 - Reservation
     - Reservation has Packages
         - Each package has charges
             - Charges have type (ENUM) and charge code (string)
 
 // DOMAIN SCENARIOS
-- Simple
-   - Collections
-   - Enum
+- Simple - OK
+   - Collections - OK
+   - Enum - OK
 
-- Complex
-    - Object Values
+- Complex - OK
+    - Object Values - OK
     - Nested with Collections
     - Queryable field inside JSON
     - Query an InsideValueObject that's in a collection of the OuterValueObject

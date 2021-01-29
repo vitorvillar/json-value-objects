@@ -31,7 +31,8 @@ public class SimpleScenarioController {
 
     @GetMapping("/customer/get/{id}")
     public ResponseEntity<?> getCustomer(@PathVariable UUID id) {
-        return ResponseEntity.ok(simpleCustomerFinderService.getCustomerById(id));
+        var customer = simpleCustomerFinderService.getCustomerById(id);
+        return ResponseEntity.ok(customer);
     }
 
     @GetMapping("/customer/all")
