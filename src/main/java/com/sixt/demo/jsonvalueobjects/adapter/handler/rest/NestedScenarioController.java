@@ -4,11 +4,13 @@ import com.sixt.demo.jsonvalueobjects.application.nested.ReservationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/nested")
 public class NestedScenarioController {
     private final ReservationService reservationService;
 
@@ -21,7 +23,7 @@ public class NestedScenarioController {
         return ResponseEntity.ok(reservationService.create());
     }
 
-    @GetMapping("/reservation/{id}")
+    @GetMapping("/reservation/get/{id}")
     public ResponseEntity<?> getReservation(@PathVariable UUID id) {
         return ResponseEntity.ok(reservationService.getById(id));
     }

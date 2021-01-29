@@ -8,7 +8,7 @@ domain/collection
 - Customer has many addresses
     - Each address has a type (ENUM)
 
-domain/nested_object
+domain/nested
 - Reservation
     - Reservation has Packages
         - Each package has charges
