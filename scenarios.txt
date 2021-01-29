@@ -1,0 +1,40 @@
+
+// SCENARIO EXAMPLE
+
+domain/simple
+- Customer has an address
+
+domain/collection
+- Customer has many addresses
+    - Each address has a type (ENUM)
+
+domain/nested_object
+- Reservation
+    - Reservation has Packages
+        - Each package has charges
+            - Charges have type (ENUM) and charge code (string)
+
+// DOMAIN SCENARIOS
+- Simple
+   - Collections
+   - Enum
+
+- Complex
+    - Object Values
+    - Nested with Collections
+    - Queryable field inside JSON
+    - Query an InsideValueObject that's in a collection of the OuterValueObject
+
+// TECHNICAL QUESTIONS
+- How do I prevent accidental changes in my value objects that break persistence?
+ - Postgres schema validation extension
+- Can I migrate my stored json data into a newer json?
+    - We can add a version field using a custom serializer, but, is it worth?
+- Backwards compatibility
+    - Change Java object name and keep the old name in the JSON @JsonProperty
+    - ^ The reverse of the point above
+    - Ignore properties
+    - Ignore null objects
+    - Old enum value in JSON non-existing on Java
+    - Old object in case of nested objects
+    - Custom serialize/deserialize
