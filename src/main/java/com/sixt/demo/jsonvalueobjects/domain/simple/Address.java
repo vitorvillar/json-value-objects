@@ -1,6 +1,7 @@
 package com.sixt.demo.jsonvalueobjects.domain.simple;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +20,8 @@ public class Address {
     private String city;
     private String state;
     private String country;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String addressComplement;
 
     @JsonIgnore

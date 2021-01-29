@@ -36,5 +36,17 @@ domain/nested - OK
     - Ignore properties
     - Ignore null objects
     - Old enum value in JSON non-existing on Java
-    - Old object in case of nested objects
+        - If it contains value which are not in the Java enum, it will fail as expected, because it cannot unmarshal the JSON and set the enum value
+            - com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `com.sixt.demo.jsonvalueobjects.domain.collection.AddressType` from String "HOME_ADDRESS": not one of the values accepted for Enum class: [BILLING, DELIVERY]
+               at [Source: (String)"[{"city": "Turbolandia", "type": "HOME_ADDRESS", "state": "Sao Turbo", "street": "Rua do Turbo", "country": "HUE HUE BR", "postCode": 80000, "houseNumber": 1}, {"city": "Turbolandia", "type": "DELIVERY", "state": "Sao Turbo", "street": "Rua do Turbo", "country": "HUE HUE BR", "postCode": 80000, "houseNumber": 1}]"; line: 1, column: 34] (through reference chain: java.util.HashSet[0]->com.sixt.demo.jsonvalueobjects.domain.collection.Address["type"])
+        - If something like this is needed, a migration plan has to be done.
+    - Old ValueObject in case of nested objects
+        - New object with same property name
+            - In this case the old JSON value will be unmarshalled normally, as the JSON keys correspond with the new Java object
+            - The Java domain object will have the new ValueObject loaded from the old JSON
+        - New object with different proerties
+            - In this case it happens the same while trying to unmarshal non-existing enum
+                - com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "code" (class com.sixt.demo.jsonvalueobjects.domain.nested.ExtendedCharge), not marked as ignorable (2 known properties: "chargeCode", "chargeType"])
+                   at [Source: (String)"{"name": "Comfort", "charges": [{"code": "TG", "type": "PROTECTION"}, {"code": "UP", "type": "EXTRAS"}]}"; line: 1, column: 43] (through reference chain: com.sixt.demo.jsonvalueobjects.domain.nested.ChargePackage["charges"]->java.util.HashSet[0]->com.sixt.demo.jsonvalueobjects.domain.nested.ExtendedCharge["code"])
+            - If something like this is needed, a migration plan has to be done.
     - Custom serialize/deserialize
