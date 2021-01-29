@@ -1,26 +1,25 @@
-package com.sixt.demo.jsonvalueobjects.domain;
+package com.sixt.demo.jsonvalueobjects.domain.simple;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
 
 @Entity
+@Table(name = "simple_customer")
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-public class Customer
-{
+public class SimpleCustomer {
     @Id
     private UUID id;
 

@@ -1,4 +1,4 @@
-package com.sixt.demo.jsonvalueobjects.domain;
+package com.sixt.demo.jsonvalueobjects.domain.simple;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
