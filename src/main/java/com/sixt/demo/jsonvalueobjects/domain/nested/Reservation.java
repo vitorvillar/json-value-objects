@@ -1,4 +1,4 @@
-package com.sixt.demo.jsonvalueobjects.domain.nested_object;
+package com.sixt.demo.jsonvalueobjects.domain.nested;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.AllArgsConstructor;

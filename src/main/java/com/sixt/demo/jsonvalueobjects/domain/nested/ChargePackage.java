@@ -1,4 +1,4 @@
-package com.sixt.demo.jsonvalueobjects.domain.nested_object;
+package com.sixt.demo.jsonvalueobjects.domain.nested;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
