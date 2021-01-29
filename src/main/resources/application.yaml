@@ -23,17 +23,17 @@ spring:
   jpa:
     properties:
       #      uncomment for JPA script creation
-      javax:
-        persistence:
-          schema-generation:
-            create-source: metadata
-            scripts:
-              action: create
-              create-target: V1__create_tables.sql
-        hibernate:
-          dialect: org.hibernate.dialect.PostgreSQLDialect
-          format_sql: true
-          jdbc:
-            time_zone: UTC
+      #      javax:
+      #        persistence:
+      #          schema-generation:
+      #            create-source: metadata
+      #            scripts:
+      #              action: create
+      #              create-target: V1__create_tables.sql
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          time_zone: UTC
       #        ddl-auto: update
       show-sql: false

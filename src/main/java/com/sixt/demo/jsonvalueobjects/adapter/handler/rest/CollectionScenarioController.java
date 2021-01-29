@@ -31,7 +31,8 @@ public class CollectionScenarioController {
 
     @GetMapping("/customer/get/{id}")
     public ResponseEntity<?> getCustomer(@PathVariable UUID id) {
-        return ResponseEntity.ok(collectionCustomerFinderService.getCustomerById(id));
+        var customer = collectionCustomerFinderService.getCustomerById(id);
+        return ResponseEntity.ok(customer);
     }
 
     @GetMapping("/customer/all")

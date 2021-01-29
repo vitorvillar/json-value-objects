@@ -25,7 +25,8 @@ public class NestedScenarioController {
 
     @GetMapping("/reservation/get/{id}")
     public ResponseEntity<?> getReservation(@PathVariable UUID id) {
-        return ResponseEntity.ok(reservationService.getById(id));
+        var res = reservationService.getById(id);
+        return ResponseEntity.ok(res);
     }
 
     @GetMapping("/reservation/all")

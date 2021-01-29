@@ -1,7 +1,7 @@
 package com.sixt.demo.jsonvalueobjects.application.collection;
 
-import com.sixt.demo.jsonvalueobjects.adapter.repository.SimpleCustomerRepository;
-import com.sixt.demo.jsonvalueobjects.domain.simple.SimpleCustomer;
+import com.sixt.demo.jsonvalueobjects.adapter.repository.CollectionCustomerRepository;
+import com.sixt.demo.jsonvalueobjects.domain.collection.CollectionCustomer;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -11,17 +11,17 @@ import java.util.UUID;
 @Service
 @Transactional
 public class CollectionCustomerFinderService {
-    private final SimpleCustomerRepository simpleCustomerRepository;
+    private final CollectionCustomerRepository collectionCustomerRepository;
 
-    public CollectionCustomerFinderService(SimpleCustomerRepository simpleCustomerRepository) {
-        this.simpleCustomerRepository = simpleCustomerRepository;
+    public CollectionCustomerFinderService(CollectionCustomerRepository collectionCustomerRepository) {
+        this.collectionCustomerRepository = collectionCustomerRepository;
     }
 
-    public SimpleCustomer getCustomerById(UUID id) {
-        return simpleCustomerRepository.findById(id).orElseThrow();
+    public CollectionCustomer getCustomerById(UUID id) {
+        return collectionCustomerRepository.findById(id).orElseThrow();
     }
 
-    public List<SimpleCustomer> getAllCustomers() {
-        return simpleCustomerRepository.findAll();
+    public List<CollectionCustomer> getAllCustomers() {
+        return collectionCustomerRepository.findAll();
     }
 }
