@@ -25,28 +25,28 @@ public class CollectionCreateCustomerService {
         var addresses = new HashSet<Address>();
         addresses.add(new Address(
             AddressType.BILLING,
-            "Rua do Turbo",
+            "Zugspitzstr.",
             1,
             80000,
-            "Turbolandia",
-            "Sao Turbo",
-            "HUE HUE BR"
+            "Pullach Im Isartal",
+            "Bayern",
+            "Deutschland"
         ));
 
         addresses.add(new Address(
             AddressType.DELIVERY,
-            "Rua do Turbo",
-            1,
-            80000,
-            "Turbolandia",
-            "Sao Turbo",
-            "HUE HUE BR"
+        "Zugspitzstr.",
+        1,
+        80000,
+        "Pullach Im Isartal",
+        "Bayern",
+        "Deutschland"
         ));
 
         var customer = new CollectionCustomer(
             UUID.randomUUID(),
-            "Gudanzinho",
-            "gudan@empresasturbo.com.br",
+            "Testkunde",
+            "testkunde@test.com",
             addresses
         );
 
